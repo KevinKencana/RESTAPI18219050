@@ -29,7 +29,7 @@ async def user_login(user: UserLoginSchema = Body(...)):
     if check_user(user):
         return signJWT(user.username)
     return {
-        "error": "username tidak terdaftar!"
+        "error": "username/password tidak sesuai!"
     }
 
 @app.get('/')
