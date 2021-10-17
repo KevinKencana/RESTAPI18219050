@@ -2,9 +2,32 @@
 
 import json
 from fastapi import FastAPI, HTTPException
+from model import UserSchema, UserLoginSchema
+from auth_handler import signJWT
 with open("menu.json", "r") as read_file:
     data = json.load(read_file)
 app = FastAPI()
+
+users = []
+
+@app.post("/user/signup", tags=["user"])
+async def create_user(user: UserSchema = Body(...)):
+    users.append(user)
+    return signJWT(user.username)
+
+def check_user(data: UserLoginSchema):
+    for user in users:
+        if user.username == data.username and user.password == data.password:
+            return True
+    return False
+
+@app.post("/user/login", tags=["user"])
+async def user_login(user: UserLoginSchema = Body(...)):
+    if check_user(user):
+        return signJWT(user.username)
+    return {
+        "error": "Wrong login details!"
+    }
 
 @app.get('/')
 def root():
