@@ -1,3 +1,4 @@
+from pydantic import BaseModel, Field
 class UserSchema(BaseModel):
     username: str = Field(...)
     password: str = Field(...)

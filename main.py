@@ -1,7 +1,6 @@
 # Kevin Kencana, 18219050
 
 import json
-from pydantic import BaseModel, Field
 from fastapi import FastAPI, HTTPException
 from model import UserSchema, UserLoginSchema
 from auth_handler import signJWT
