@@ -37,7 +37,6 @@ async def update_menu(name_menu_awal: str, name_menu_akhir: str): # Nama menu aw
     )
 
 # Ini operasi DELETE
-@app.post('/menu')
 @app.delete('/menu/{item_id}')
 async def delete_menu(name:str):
     for menu_item in data['menu']: 
