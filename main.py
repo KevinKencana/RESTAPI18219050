@@ -1,9 +1,12 @@
 # Kevin Kencana, 18219050
 
 import json
-from fastapi import FastAPI, HTTPException, Body
+from fastapi import FastAPI, HTTPException, Body, Depends
 from model import UserSchema, UserLoginSchema
 from auth_handler import signJWT
+from auth_bearer import JWTBearer
+from auth_handler import signJWT
+
 with open("menu.json", "r") as read_file:
     data = json.load(read_file)
 app = FastAPI()
@@ -13,7 +16,7 @@ users = []
 @app.post("/user/signup", tags=["user"])
 async def create_user(user: UserSchema = Body(...)):
     users.append(user)
-    return signJWT(user.username)
+    return "Username dan password telah terdaftar!"
 
 def check_user(data: UserLoginSchema):
     for user in users:
@@ -26,7 +29,7 @@ async def user_login(user: UserLoginSchema = Body(...)):
     if check_user(user):
         return signJWT(user.username)
     return {
-        "error": "Wrong login details!"
+        "error": "username tidak terdaftar!"
     }
 
 @app.get('/')
@@ -34,7 +37,7 @@ def root():
     return{'Menu':'Item'}
 
 # Ini operasi read/GET
-@app.get('/menu/{item_id}')
+@app.get('/menu/{item_id}', dependencies=[Depends(JWTBearer())])
 async def read_menu(item_id: int):
     for menu_item in data['menu']:
         if menu_item['id'] == item_id:
@@ -44,7 +47,7 @@ async def read_menu(item_id: int):
         )
 
 # Ini operasi update/PUT
-@app.put('/menu/{item_id}')
+@app.put('/menu/{item_id}', dependencies=[Depends(JWTBearer())])
 async def update_menu(name_menu_awal: str, name_menu_akhir: str): # Nama menu awal adalah nama dari item
     # menu yang sudah ada di dalam file menu, lalu ingin diganti dengan nama_menu_akhir
     for menu_item in data['menu']: 
@@ -60,7 +63,7 @@ async def update_menu(name_menu_awal: str, name_menu_akhir: str): # Nama menu aw
     )
 
 # Ini operasi DELETE
-@app.delete('/menu/{item_id}')
+@app.delete('/menu/{item_id}', dependencies=[Depends(JWTBearer())])
 async def delete_menu(name:str):
     for menu_item in data['menu']: 
         if menu_item['name'] == name: #Jika sudah ketemu nama item menu yang ingin didelete
@@ -81,7 +84,7 @@ async def delete_menu(name:str):
 
 
 # Ini operasi add/POST
-@app.post('/menu')
+@app.post('/menu', dependencies=[Depends(JWTBearer())])
 async def add_menu(name:str):
     id = 1 # Setting id awal sebagai 1
     if (len(data['menu'])>0): #Jika menu sudah ada item, berarti nilai "len" akan lebih dari 0, berarti id
