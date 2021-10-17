@@ -1,7 +1,7 @@
 # Kevin Kencana, 18219050
 
 import json
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Body
 from model import UserSchema, UserLoginSchema
 from auth_handler import signJWT
 with open("menu.json", "r") as read_file:
