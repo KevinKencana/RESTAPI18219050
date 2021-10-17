@@ -137,13 +137,6 @@
             ],
             "version": "==35.0.0"
         },
-        "decouple": {
-            "hashes": [
-                "sha256:c253c1cc62b76e9720a066f334552548c6de1884bc3bdf456ddb62d61b867b09"
-            ],
-            "index": "pypi",
-            "version": "==0.0.7"
-        },
         "dnspython": {
             "hashes": [
                 "sha256:95d12f6ef0317118d2a1a6fc49aac65ffec7eb8087474158f42f26a639135216",
