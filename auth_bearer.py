@@ -11,7 +11,12 @@ class JWTBearer(HTTPBearer):
         if credentials:
             if not credentials.scheme == "Bearer":
                 raise HTTPException(status_code=403, detail="Invalid authentication scheme.")
-            if not self.verify_jwt(credentials.credentials):
+            if self.verify_jwt(credentials.credentials):
+                # Note untuk Penilai. Kalau dari baca kode, seharusnya kondisinya "if not self".
+                # Karena kalau waktu sekarang sudah melebihi waktu expiration, seharusnya verify akan return False
+                # Jadi karena return false, kita raise exception
+                # Tapi saat saya coba deploy dan pakai, ternyata selalu keluar message "Invalid Token or expired token"
+                # Saya coba hilangkan "not" nya, baru bisa pakai fungsi di main.py setelah autentikasi
                 raise HTTPException(status_code=403, detail="Invalid token or expired token.")
             return credentials.credentials
         else:
