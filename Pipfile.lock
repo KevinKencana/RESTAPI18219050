@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "753a7d3b4a42cd480738a625262eb382b77ef6bd3c75512c34209be3069a2dfd"
+            "sha256": "a4090d7097a7684d58fa7db351d4cbec44c18aef4ad1e404fa5e10c0a17c7d91"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -93,6 +93,7 @@
                 "sha256:fd8a250edc26254fe5b33be00402e6d287f562b6a5b2152dec302fa15bb3e997",
                 "sha256:ffaa5c925128e29efbde7301d8ecaf35c8c60ffbcd6a1ffd3a552177c8e5e796"
             ],
+            "index": "pypi",
             "version": "==1.15.0"
         },
         "charset-normalizer": {
@@ -135,6 +136,7 @@
                 "sha256:eb80e8a1f91e4b7ef8b33041591e6d89b2b8e122d787e87eeb2b08da71bb16ad",
                 "sha256:ebeddd119f526bcf323a89f853afb12e225902a24d29b55fe18dd6fcb2838a76"
             ],
+            "index": "pypi",
             "version": "==35.0.0"
         },
         "dnspython": {
@@ -321,6 +323,7 @@
                 "sha256:2d475327684562c3a96cc71adf7dc8c4f0565175cf86b6d7a404ff4c771f15f0",
                 "sha256:7582ad22678f0fcd81102833f60ef8d0e57288b6b5fb00323d101be910e35705"
             ],
+            "index": "pypi",
             "version": "==2.20"
         },
         "pydantic": {
@@ -350,6 +353,14 @@
             ],
             "index": "pypi",
             "version": "==1.8.2"
+        },
+        "pyjwt": {
+            "hashes": [
+                "sha256:b888b4d56f06f6dcd777210c334e69c737be74755d3e5e9ee3fe67dc18a0ee41",
+                "sha256:e0c4bb8d9f0af0c7f5b1ec4c5036309617d03d56932877f2f7a0beeb5318322f"
+            ],
+            "index": "pypi",
+            "version": "==2.3.0"
         },
         "python-decouple": {
             "hashes": [
